@@ -9,7 +9,7 @@ use App\Helper\ImageHelper;
 class EventController extends Controller
 {
     public function index() {
-        $events = Events::all();
+        $events = Event::all();
         return view('welcome', ['events' => $events]);
     }
 
