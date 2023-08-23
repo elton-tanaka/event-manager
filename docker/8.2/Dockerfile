@@ -27,8 +27,12 @@ RUN apt-get update \
        php8.2-intl php8.2-readline \
        php8.2-ldap \
        php8.2-msgpack php8.2-igbinary php8.2-redis php8.2-swoole \
-       php8.2-memcached php8.2-pcov php8.2-xdebug \
-    && curl -sLS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer \
+       php8.2-memcached php8.2-pcov php8.2-xdebug
+
+RUN apt-get install -y php-xdebug
+COPY ext-xdebug.ini /etc/php/8.2/cli/conf.d/ext-xdebug.ini
+
+RUN curl -sLS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer \
     && curl -sLS https://deb.nodesource.com/setup_$NODE_VERSION.x | bash - \
     && apt-get install -y nodejs \
     && npm install -g npm \
@@ -44,10 +48,6 @@ RUN apt-get update \
     && apt-get -y autoremove \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-RUN if [ ${XDEBUG}] ; then \
-    apt-get install -y php-xdebug; \
-fi;
 
 RUN setcap "cap_net_bind_service=+ep" /usr/bin/php8.2
 

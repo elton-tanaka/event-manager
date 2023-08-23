@@ -17,9 +17,9 @@ return new class extends Migration
             $table->text('description');
             $table->dateTime('date');
             $table->string('city');
-            $table->boolean('promoted');
-            $table->string('image');
-            $table->json('items');
+            $table->boolean('promoted')->default('0');
+            $table->string('image')->nullable();
+            $table->json('items')->nullable();
             $table->foreignId('user_id')->constraided();
             $table->timestamps();
         });
