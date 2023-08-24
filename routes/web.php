@@ -14,8 +14,8 @@ use App\Http\Controllers\EventController;
 |
 */
 
-Route::resource('events', EventController::class);
 Route::middleware('auth')->group(function () {
+    Route::resource('events', EventController::class);
 });
 
 Route::get('/', [EventController::class, 'index']);
@@ -25,7 +25,5 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [EventController::class, 'dashboard'])->name('dashboard');
 });

@@ -12,7 +12,8 @@ class Event extends Model
     protected $fillable = ['title', 'description', 'date', 'city', 'promoted', 'image', 'items', 'user_id'];
 
     protected $casts = [
-        'items' => 'array'
+        'items' => 'array',
+        'date' => 'datetime'
     ];
 
     public function user() {

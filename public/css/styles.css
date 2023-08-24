@@ -2,13 +2,13 @@
 /* * {
     font-family: 'Roboto';
   }
-
+**/
   body {
     min-height: 100vh;
     padding-bottom: 100px;
     position: relative;
   }
-
+/**
   header {
     background-color: #FFF;
     border-bottom: 1px solid #CCC;
@@ -143,21 +143,26 @@
   } */ */
 
   /* Event page */
-  /* #image-container,
+  #image-container,
   #info-container {
     margin-top: 30px;
   }
 
-  #image-container img {
+  /* #image-container img {
     border-radius: 10px;
-  }
+  } */
 
   #info-container h1 {
     font-size: 36px;
     font-weight: 900;
   }
 
-  #info-container p {
+  .card {
+    margin-top: 30px;
+    border-radius: 10px;
+  }
+
+  /* #info-container p {
     margin: 0;
     font-size: 14px;
     display: flex;
@@ -218,12 +223,18 @@
     text-align: center;
     background-color: #353E48;
     color: #FFF;
-    padding: 30px;
+    padding: 20px;
     position: absolute;
     bottom: 0;
     width: 100%;
+    margin: 0;
   }
 
   footer p {
     margin-bottom: 0;
   }
+
+  html {
+    position: relative;
+    min-height: 100%;
+}
