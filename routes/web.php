@@ -25,5 +25,8 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', [EventController::class, 'dashboard'])->name('dashboard');
+    Route::get('/dashboard', [EventController::class, 'dashboard']);
+    Route::post('events/join/{id}', [EventController::class, 'joinEvent']);
+    Route::delete('events/leave/{id}', [EventController::class, 'leaveEvent']);
+
 });

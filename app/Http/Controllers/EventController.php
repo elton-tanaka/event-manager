@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\User;
-use App\Helper\ImageHelper;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -60,11 +60,19 @@ class EventController extends Controller
     }
 
     public function show(Event $event) {
-
-
         $eventOwner = User::where('id', $event->user_id)->first()->toArray();
+        $user = auth()->user();
 
-        return view('events.show', compact('event', 'eventOwner'));
+        if($user) {
+            $userEvents = $user->eventsAsParticipant->toArray();
+            $hasUserJoined = false;
+            foreach($userEvents as $userEvent) {
+                $hasUserJoined = ($event->id == $userEvent['id']) ? true : false;
+                break;
+            }
+        }
+
+        return view('events.show', compact('event', 'eventOwner', 'hasUserJoined'));
     }
 
     public function edit(Event $event) {
@@ -97,16 +105,28 @@ class EventController extends Controller
     }
 
     public function dashboard() {
-
         $user = auth()->user();
-
         $events = $user->events;
+        $eventsAsParticipant = $user->eventsAsParticipant;
 
-        // $eventsAsParticipant = $user->eventsAsParticipant;
+        return view('events.dashboard', compact('events', 'eventsAsParticipant'));
 
-        // return view('events.dashboard', compact(['events', 'eventsasparticipant']));
+    }
 
-        return view('events.dashboard', compact(['events']));
+    public function joinEvent(int $id) {
+        $user = auth()->user();
+        $user->eventsAsParticipant()->attach($id);
+        $event = Event::findOrFail($id);
+
+        return redirect('/dashboard')->with('success', 'Sua presença está confirmada no evento ' . $event->title);
+    }
+
+    public function leaveEvent(int $id) {
+        $user = auth()->user();
+        $user->eventsAsParticipant()->detach($id);
+        $event = Event::findOrFail($id);
+
+        return redirect('/dashboard')->with('success', 'Você saiu com sucesso do evento: ' . $event->title);
 
     }
 }
