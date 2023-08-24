@@ -4,9 +4,14 @@
 @section('content')
 <div id="search-container" class="col-md-12">
     <h1>Busque um evento</h1>
-    <form action="/" method="GET">
+
+    <form class="d-flex">
+        <input class="form-control me-sm-2" type="search" id="search" placeholder="Search">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    {{-- <form action="/" method="GET">
         <input type="text" id="search" name="search" class="form-control" placeholder="Procurar...">
-    </form>
+    </form> --}}
 </div>
 <div id="events-container" class="col-md-12">
     @if($search)
