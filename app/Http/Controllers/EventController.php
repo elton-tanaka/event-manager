@@ -14,13 +14,12 @@ class EventController extends Controller
         $search = request('search');
 
         if($search) {
-
-            $events = Event::where([
-                ['title', 'like', '%'.$search.'%']
-            ])->get();
-
+            $events = Event::where(function ($query) use ($search) {
+                $query->where('title', 'like', '%'.$search.'%');
+                $query->orderBy('promoted', 'desc');
+            })->get();
         } else {
-            $events = Event::all();
+            $events = Event::all()->sortByDesc('promoted');
         }
 
         return view('welcome',['events' => $events, 'search' => $search]);

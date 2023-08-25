@@ -78,8 +78,9 @@
     margin: 0 auto;
   } */
 
+
   /* Events list */
-  /* #events-container {
+ #events-container {
     padding: 50px;
   }
 
@@ -88,7 +89,7 @@
   }
 
   #events-container .subtitle {
-    color: #757575;
+    /* color: #757575; */
     margin-bottom: 30px;
   }
 
@@ -105,18 +106,18 @@
   }
 
   #events-container img {
-    max-height: 150px;
+    max-height: 200px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
   }
 
   .card .card-date {
     font-size: 12px;
-    color: #CCC;
+    /* color: #CCC; */
   }
 
   .card .card-title {
-    color: #212121;
+    /* color: #212121; */
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 30px;
@@ -124,7 +125,7 @@
 
   .card-participants {
     font-size: 14px;
-    color: #757575;
+    /* color: #757575; */
   }
 
   /* Event create page */
@@ -237,4 +238,11 @@
   html {
     position: relative;
     min-height: 100%;
+
+}
+
+.fa-3x {
+    position: absolute;
+    top: 130px;
+    left: 16px;
 }

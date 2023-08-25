@@ -19,12 +19,17 @@
     @endif
     <div id="cards-container" class="row">
         @foreach($events as $event)
-            <div class="card col-md-3">
+            <div class="card border-secondary mb-3 scale-100 hover:scale-105">
                 <img src="/img/events/{{ $event->image }}" alt="{{ $event->title }}">
+                @if($event->promoted == true)
+                    <div class="fa-3x">
+                        <i class="fa-solid fa-star fa-bounce" style="color: #ffd505; --fa-animation-iteration-count: 3;"></i>
+                    </div>
+                @endif
                 <div class="card-body">
                     <p class="card-date">{{ date('d/m/Y', strtotime($event->date)) }}</p>
                     <h5 class="card-title">{{ $event->title }}</h5>
-                    {{-- <p class="card-participants"> {{ count($event->users) }} Participantes</p> --}}
+                    <p class="card-participants"> {{ count($event->users) }} Participantes</p>
                     <a href="/events/{{ $event->id }}" class="btn btn-primary">Saber mais</a>
                 </div>
             </div>
