@@ -7,22 +7,31 @@ use App\Models\Event;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use App\Repositories\Interfaces\EventRepositoryInterface;
 
 class EventController extends Controller
 {
+    private $eventRepository;
+
+    public function __construct(EventRepositoryInterface $eventRepository) {
+        $this->eventRepository = $eventRepository;
+    }
+
     public function index() {
         $search = request('search');
 
+        $events = $this->eventRepository->allEvents()->sortByDesc('promoted');
+
         if($search) {
-            $events = Event::where(function ($query) use ($search) {
-                $query->where('title', 'like', '%'.$search.'%');
-                $query->orderBy('promoted', 'desc');
-            })->get();
-        } else {
-            $events = Event::all()->sortByDesc('promoted');
+            $events = $events->where(function ($query) use ($search) {
+                $query->where('title', 'like', '%'.$search.'%')->get();
+            });
+
+            // $events = $events->where('title', 'like', '%'.$search.'%');
+            dd($events);
         }
 
-        return view('welcome',['events' => $events, 'search' => $search]);
+        // return view('welcome',['events' => $events, 'search' => $search]);
     }
 
     public function create() {

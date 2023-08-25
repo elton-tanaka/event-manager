@@ -35,4 +35,9 @@ class EventServiceProvider extends ServiceProvider
     {
         return false;
     }
+
+    public function register()
+    {
+        $this->app->bind('App\Repositories\Interfaces\EventRepositoryInterface', 'App\Repositories\EventRepository' );
+    }
 }
