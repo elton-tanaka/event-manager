@@ -20,15 +20,10 @@ class EventApiController extends BaseApiController
 
     public function getAllEvents() {
         try {
-            return response()->json([
-                'message' => 'Events Retrieved Successfully.',
-                'data' => $this->eventRepository->getAll()
-            ]);
+            return $this->sendResponse($this->eventRepository->getAll(), 'Events Retrieved Successfully.');
+
         } catch (Throwable $exception) {
-            return response()->json([
-                'message' => 'A Error has occured',
-                'data' => $exception
-                        ], 401);
+            return $this->sendError('A Error has occured', $exception, '500');
         }
     }
 
@@ -37,21 +32,12 @@ class EventApiController extends BaseApiController
             $event = $this->eventRepository->getById($id);
 
             if(isset($event)) {
-                return response()->json([
-                    'message' => 'Event Retrieved Successfully.',
-                    'data' => $this->eventRepository->getById($id)
-                ]);
+                return $this->sendResponse($this->eventRepository->getById($id), 'Event Retrieved Successfully.');
             }
-
-            return response()->json([
-                'message' => 'Events not found'
-            ], 404);
+            return $this->sendError('Event not found');
 
         } catch (Throwable $exception) {
-            return response()->json([
-                'message' => 'A Error has occured',
-                'data' => $exception
-                        ], 401);
+            return $this->sendError('A Error has occured', $exception, '500');
         }
     }
 }
