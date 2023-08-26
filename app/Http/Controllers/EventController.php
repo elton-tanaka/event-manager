@@ -18,20 +18,10 @@ class EventController extends Controller
     }
 
     public function index() {
-        $search = request('search');
+        $search = request('search') ?? '';
+        $events = $this->eventRepository->search($search);
 
-        $events = $this->eventRepository->allEvents()->sortByDesc('promoted');
-
-        if($search) {
-            $events = $events->where(function ($query) use ($search) {
-                $query->where('title', 'like', '%'.$search.'%')->get();
-            });
-
-            // $events = $events->where('title', 'like', '%'.$search.'%');
-            dd($events);
-        }
-
-        // return view('welcome',['events' => $events, 'search' => $search]);
+        return view('welcome',compact('events', 'search'));
     }
 
     public function create() {
@@ -62,7 +52,7 @@ class EventController extends Controller
         $user = auth()->user();
         $formInput['user_id'] = $user->id;
 
-        Event::create($formInput);
+        $this->eventRepository->store($formInput);
 
         return redirect('/')->with('success', 'Event created successfully');
     }
@@ -101,13 +91,13 @@ class EventController extends Controller
             $file->move(public_path('img/events'), $fileName);
             $formInput['image'] = $fileName;
         }
-        $event->update($formInput);
+        $this->eventRepository->update($formInput, $event->id);
 
         return redirect('/')->with('success', 'Event updated successfully');
     }
 
     public function destroy(Event $event) {
-        $event->delete();
+        $this->eventRepository->destroy($event->id);
 
         return redirect('/')->with('success', 'Event deleted successfully');
     }
@@ -124,7 +114,7 @@ class EventController extends Controller
     public function joinEvent(int $id) {
         $user = auth()->user();
         $user->eventsAsParticipant()->attach($id);
-        $event = Event::findOrFail($id);
+        $event = $this->eventRepository->getById($id);
 
         return redirect('/dashboard')->with('success', 'Sua presença está confirmada no evento ' . $event->title);
     }
@@ -132,7 +122,7 @@ class EventController extends Controller
     public function leaveEvent(int $id) {
         $user = auth()->user();
         $user->eventsAsParticipant()->detach($id);
-        $event = Event::findOrFail($id);
+        $event = $this->eventRepository->getById($id);
 
         return redirect('/dashboard')->with('success', 'Você saiu com sucesso do evento: ' . $event->title);
 

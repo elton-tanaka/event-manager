@@ -5,9 +5,10 @@ use App\Models\Event;
 
 Interface EventRepositoryInterface
 {
-    public function allEvents();
-    public function storeEvent(Event $data);
-    public function findEvent(int $id);
-    public function updateEvent(Event $data, int $id);
-    public function destroyEvent(int $id);
+    public function getAll();
+    public function store(Event $data);
+    public function getById(int $id);
+    public function update(Event $data, int $id);
+    public function destroy(int $id);
+    public function search(String $input);
 }
