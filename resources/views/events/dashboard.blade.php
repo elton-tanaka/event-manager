@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="col-md-10 offset-md-1 dashboard-title-container">
-    <h1>Meus Eventos</h1>
+    <h1>{{__('My Events')}}</h1>
 </div>
 <div class="col-md-10 offset-md-1 dashboard-events-container">
     @if(count($events) > 0)
@@ -13,9 +13,9 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Participantes</th>
-                <th scope="col">Ações</th>
+                <th scope="col">{{__('Title')}}</th>
+                <th scope="col">{{__('Participants')}}</th>
+                <th scope="col">{{__('Actions')}}</th>
             </tr>
         </thead>
         <tbody>
@@ -26,11 +26,11 @@
                     <td>{{ count($event->users) }}</td>
                     <td></td>
                     <td>
-                        <a href="/events/{{ $event->id }}/edit/" class="btn btn-info edit-btn"><ion-icon name="create-outline"></ion-icon> Editar</a>
+                        <a href="/events/{{ $event->id }}/edit/" class="btn btn-info edit-btn"><ion-icon name="create-outline"></ion-icon>{{__('Edit')}}</a>
                         <form action="/events/{{ $event->id }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger delete-btn"><ion-icon name="trash-outline"></ion-icon> Deletar</button>
+                            <button type="submit" class="btn btn-danger delete-btn"><ion-icon name="trash-outline"></ion-icon>{{__('Delete')}}</button>
                         </form>
                     </td>
                 </tr>
@@ -38,11 +38,11 @@
         </tbody>
     </table>
     @else
-    <p>Você ainda não tem eventos, <a href="/events/create">criar evento</a></p>
+    <p>{{__('You have no events yet, ')}}<a href="/events/create">{{__('Create Event')}}</a></p>
     @endif
 </div>
 <div class="col-md-10 offset-md-1 dashboard-title-container">
-    <h1>Eventos que estou participando</h1>
+    <h1>{{__('Events I`m Attending')}}</h1>
 </div>
 <div class="col-md-10 offset-md-1 dashboard-events-container">
 @if(count($eventsAsParticipant) > 0)
@@ -50,9 +50,9 @@
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Participantes</th>
-            <th scope="col">Ações</th>
+            <th scope="col">{{__('Title')}}</th>
+            <th scope="col">{{__('Participants')}}</th>
+            <th scope="col">{{__('Actions')}}</th>
         </tr>
     </thead>
     <tbody>
@@ -67,7 +67,7 @@
                         @method("DELETE")
                         <button type="submit" class="btn btn-danger delete-btn">
                             <ion-icon name="trash-outline"></ion-icon>
-                            Sair do Evento
+                            {{__('Leave the event')}}
                         </button>
                     </form>
                 </td>
@@ -76,7 +76,7 @@
     </tbody>
 </table>
 @else
-<p>Você ainda não está participando de nenhum evento, <a href="/">veja todos os eventos</a></p>
+<p>{{__('You are not participating in any events yet. ')}}<a href="/">{{__('See all events')}}</a></p>
 @endif
 </div>
 @endsection

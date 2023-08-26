@@ -161,7 +161,7 @@ class EventController extends Controller
             $user->eventsAsParticipant()->attach($id);
             $event = $this->eventRepository->getById($id);
 
-            return redirect('/dashboard')->with('success', 'Sua presença está confirmada no evento ' . $event->title);
+            return redirect('/dashboard')->with('success', 'Your attendance is confirmed at the event.' . $event->title);
 
         } catch (Exception $e) {
             echo $e->getMessage();
@@ -174,7 +174,7 @@ class EventController extends Controller
             $user->eventsAsParticipant()->detach($id);
             $event = $this->eventRepository->getById($id);
 
-            return redirect('/dashboard')->with('success', 'Você saiu com sucesso do evento: ' . $event->title);
+            return redirect('/dashboard')->with('success', 'You have successfully leave the event: ' . $event->title);
 
         } catch (Exception $e) {
             echo $e->getMessage();

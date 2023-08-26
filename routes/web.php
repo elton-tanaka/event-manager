@@ -15,6 +15,8 @@ use App\Http\Controllers\Api\EventApiController;
 |
 */
 
+App::setLocale('pt-br');
+
 Route::middleware('auth')->group(function () {
     Route::resource('events', EventController::class);
 });

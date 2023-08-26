@@ -25,16 +25,16 @@
                     <div class="collapse navbar-collapse" id="navbarColor01">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" href="/">Home
+                            <a class="nav-link active" href="/">{{__('Home')}}
                                 <span class="visually-hidden">(current)</span>
                             </a>
                         </li>
                         @auth
                             <li class="nav-item">
-                                <a href="/events/create" class="nav-link">Create Event</a>
+                                <a href="/events/create" class="nav-link">{{__('Create Event')}}</a>
                             </li>
                             <li class="nav-item">
-                                <a href="/dashboard" class="nav-link">My Events</a>
+                                <a href="/dashboard" class="nav-link">{{__('My Events')}}</a>
                             </li>
                             <li class="nav-item">
                             <form action="/logout" method="POST">
@@ -50,10 +50,10 @@
                         @endauth
                         @guest
                             <li class="nav-item">
-                                <a href="/login" class="nav-link">Login</a>
+                                <a href="/login" class="nav-link">{{__('Login')}}</a>
                             </li>
                             <li class="nav-item">
-                                <a href="/register" class="nav-link">Register</a>
+                                <a href="/register" class="nav-link">{{__('Register')}}</a>
                             </li>
                         @endguest
                     </ul>
