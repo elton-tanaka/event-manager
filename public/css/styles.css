@@ -58,26 +58,21 @@
 
 
   /* Search Container */
-  /* #search-container {
-    background-image: url("../img/banner.jpg");
-    background-size: cover;
-    background-position: center;
-    height: 400px;
+  #search-container {
     padding: 50px;
     text-align: center;
   }
 
-  #search-container h1 {
-    color: #F2A340;
+  /* #search-container h1 {
     margin-bottom: 30px;
     font-weight: 900;
-  }
+  } */
 
   #search-container form {
     width: 50%;
     margin: 0 auto;
-  } */
-
+  }
+ /*
 
   /* Events list */
  #events-container {
@@ -86,11 +81,12 @@
 
   #events-container h2 {
     margin-bottom: 10px;
+    text-align: center;
   }
 
   #events-container .subtitle {
-    /* color: #757575; */
     margin-bottom: 30px;
+    text-align: center;
   }
 
   #cards-container {
@@ -121,6 +117,7 @@
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 30px;
+    text-align: center;
   }
 
   .card-participants {
@@ -128,8 +125,13 @@
     /* color: #757575; */
   }
 
+  .card .btn {
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
   /* Event create page */
-  /* #event-create-container {
+   #event-create-container {
     padding: 30px
   }
 
@@ -141,7 +143,7 @@
   #event-create-container select,
   #event-create-container textarea {
     font-size: 12px;
-  } */ */
+  }
 
   /* Event page */
   #image-container,
@@ -154,8 +156,9 @@
   } */
 
   #info-container h1 {
-    font-size: 36px;
+    font-size: 40px;
     font-weight: 900;
+    margin: 20px 0;
   }
 
   .card {
@@ -163,21 +166,21 @@
     border-radius: 10px;
   }
 
-  /* #info-container p {
+   /* #info-container p {
     margin: 0;
     font-size: 14px;
     display: flex;
-  }
+  } */
 
-  #info-container h3,
+  /* #info-container h3,
   #description-container h3 {
     font-size: 20px;
     font-weight: bold;
-  }
+  } */
 
   #info-container ion-icon {
     font-size: 20px;
-    color: #F2A340;
+    color: #40f240;
     margin-right: 5px;
   }
 
@@ -196,21 +199,28 @@
 
   #description-container {
     margin-top: 30px;
-  } */
+  }
 
   /* Dashboard */
-  /* .dashboard-title-container {
+  .dashboard-title-container {
     margin-bottom: 30px;
     margin-top: 30px;
+    padding: 30px;
   }
 
   .dashboard-events-container th {
-    width: 25%;
+    width: 20%;
   }
 
   .dashboard-events-container form {
     display: inline-block;
-  } */
+  }
+
+  .table .btn {
+    margin-right: 5px;
+    position: relative;
+    align-items: center;
+  }
 
   /* Edit page */
 

@@ -9,9 +9,9 @@
 </div>
 <div class="col-md-10 offset-md-1 dashboard-events-container">
     @if(count($events) > 0)
-    <table class="table">
+    <table class="table table-hover">
         <thead>
-            <tr>
+            <tr class="table-default">
                 <th scope="col">#</th>
                 <th scope="col">{{__('Title')}}</th>
                 <th scope="col">{{__('Participants')}}</th>
@@ -20,11 +20,10 @@
         </thead>
         <tbody>
             @foreach($events as $event)
-                <tr>
+                <tr class="table-default">
                     <td scropt="row">{{ $loop->index + 1 }}</td>
                     <td><a href="/events/{{ $event->id }}">{{ $event->title }}</a></td>
                     <td>{{ count($event->users) }}</td>
-                    <td></td>
                     <td>
                         <a href="/events/{{ $event->id }}/edit/" class="btn btn-info edit-btn"><ion-icon name="create-outline"></ion-icon>{{__('Edit')}}</a>
                         <form action="/events/{{ $event->id }}" method="POST">
