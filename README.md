@@ -1,7 +1,7 @@
 
 # Event Manager
 
-A simple laravel project for managing events/courses.
+A simple laravel project for managing events/courses built in 6 days.
 
 ## Installation
 
