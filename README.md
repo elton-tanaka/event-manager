@@ -47,6 +47,10 @@ A simple laravel project for managing events/courses.
 - pt-br localization
 - Sick theme
 
+## Api collection
+
+There is a postman colletion for the api access inside /postman folder
+
 ## Screenshots
 
 ![App Screenshot 1](/public/img/screenshots/localhost_.png)
